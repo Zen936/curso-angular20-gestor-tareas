@@ -1,0 +1,15 @@
+<div class="nueva-tarea">
+  <input
+    type="text"
+    #inputTarea
+    placeholder="Nueva Tarea"
+
+     
+    (keyup.enter)="onAgregar(inputTarea)"
+  />
+   <!-- evento de input para agregar la tarea ↑-->
+
+
+  <!-- manda el texto escrito al metodo del componente cuando da click -->
+  <button type="button" (click)="onAgregar(inputTarea)">Agregar</button>
+</div>

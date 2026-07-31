@@ -1,11 +1,13 @@
 li {
   padding: 0.6rem 0.75rem;
-  border: 1px solid #eee;
+  border: 1px solid #a4921f;
   border-radius: 6px;
   margin-bottom: 0.4rem;
   cursor: pointer;
   display: flex;
   justify-content: space-between;
+  color: #4e4610;
+  font-family: 'Trebuchet MS', sans-serif;
 }
 
 li:hover {
