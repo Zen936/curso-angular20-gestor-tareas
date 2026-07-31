@@ -1,0 +1,9 @@
+ <!-- CLICK PROPAGA EVENTO -->
+      <li (click)="toggle.emit(task().id)" [class.hecha]="task().completada">
+        {{ task().titulo }}
+        @if (task().completada) {
+          <span>バ.</span>
+        }
+        <!-- STOP PROPAGATION DETIENE LA PROPAGACION DEL EVENTO -->
+        <button class="eliminar" (click)="removed.emit(task().id); $event.stopPropagation()">バ-</button>
+      </li>

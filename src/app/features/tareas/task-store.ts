@@ -3,15 +3,25 @@ import { Task } from './task';
 
 const STORAGE_KEY = 'tareas';
 
+
+/*clase que concentra la logica de negocio de las tareas, es decir, la logica que no tiene que ver con la vista,
+ sino con el estado de la aplicacion */
+
+ // INJECTABLE hace un dispatch para que esta clase este disponible, recibe el paametro root para todo el proyecto
 @Injectable({ providedIn: 'root' })
 export class TaskStore {
   tareas = signal<Task[]>(this.cargar());
-
+ // computed es preferible en el front, leen el valor a partir de una modificacion y lo muestran al front
   pendientes = computed(() => this.tareas().filter((t) => !t.completada).length);
   completadas = computed(() => this.tareas().filter((t) => t.completada).length);
 
   constructor() {
+    //effect es preferible en el back, se ejecuta cuando hay un cambio en el estado de la aplicacion es como un listener
     effect(() => {
+
+  //STRINGIFY ayuda a convertir el objeto en un string para poder guardarlo en el localStorage
+  //localstorage es una parte que nos permite almacenar datos primitivos, es decir, datos que no son objetos, 
+  // en el navegador del usuario, de manera que se puedan recuperar posteriormente
       localStorage.setItem(STORAGE_KEY, JSON.stringify(this.tareas()));
     });
   }
@@ -50,9 +60,7 @@ export class TaskStore {
     }
 
     return [
-      { id: 1, titulo: 'Aprender angular', completada: false },
-      { id: 2, titulo: 'Construir un proyecto nuevo', completada: false },
-      { id: 3, titulo: 'Dominar signals', completada: true },
+      { id: 1, titulo: 'Agrega una tarea', completada: false },
     ];
   }
 }
